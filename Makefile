@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Wall -O3 -ffast-math -std=gnu99 -lz -Iglew/include
+CFLAGS = -g -Wall -O1 -ffast-math -std=gnu99
 PROG = stallmanbox
 
 SRCS = \
@@ -20,10 +20,11 @@ SRCS = \
 	AudioSource.c \
 	VorbisPlayer.c \
 
+LIBS = -lz -lm
 ifeq ($(shell uname),Darwin)
-	LIBS = -framework OpenGL -framework GLUT
+	LIBS += -framework OpenGL -framework GLUT
 else
-	LIBS = -Lglew/lib -lglut -lGLEW -lSDL
+	LIBS += -lglut -lGLEW -lGL -lSDL
 endif
 
 all: $(PROG)
@@ -35,5 +36,6 @@ test: all
 	./$(PROG)
 
 clean:
-	rm -f $(PROG)
-	rm -r *~
+	rm -vf $(PROG)
+	rm -vfr *~
+

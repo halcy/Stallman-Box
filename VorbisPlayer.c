@@ -65,7 +65,7 @@ void RestartVorbisPlayer(VorbisPlayer *self)
 
 static inline void LoadNextFrameIfNeeded(VorbisPlayer *self)
 {
-	if(self->framepos>=self->framelength)
+	if(self->framepos>=self->framelength||!self->currentframe)
 	{
 		self->framepos=0;
 		self->framelength=stb_vorbis_get_frame_float(self->vorbis,NULL,&self->currentframe);
