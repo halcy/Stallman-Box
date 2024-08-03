@@ -23,7 +23,7 @@ SRCS = \
 ifeq ($(shell uname),Darwin)
 	LIBS = -framework OpenGL -framework GLUT
 else
-	LIBS = -Lglew/lib -lglut -lGLEW -lSDL
+	LIBS = -Lglew/lib -lglut -lGLEW -lSDL -lGL -lm
 endif
 
 all: $(PROG)

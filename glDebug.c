@@ -43,19 +43,19 @@ static void printDebugLog(unsigned int source, unsigned int type, unsigned int i
 }
 
 static void debugCallback(
-	GLenum source,
-	GLenum type,
-	GLuint id,
-	GLenum severity,
-	GLsizei length,
-	const GLchar* message,
-	GLvoid* userParam
+    GLenum source,
+    GLenum type,
+    GLuint id,
+    GLenum severity,
+    GLsizei length,
+    const GLchar* message,
+    const GLvoid* userParam  // Change here
 ) {
-	printDebugLog(source, type, id, severity, message);
+    printDebugLog(source, type, id, severity, message);
 }
 
 void attachGLDebug() {
-	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
-	glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
-	glDebugMessageCallbackARB(&debugCallback, NULL);
+    glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+    glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
+    glDebugMessageCallbackARB(debugCallback, NULL);
 }
